@@ -24,7 +24,7 @@ const app = express();
 connectDB()
 // Database Connection
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://gas-agency-booking-9v5q.vercel.app'], // Array of whitelisted origins
+  origin: "https://frontend-rb.onrender.com",
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   credentials: true // Allow cookies to be sent
 }));
