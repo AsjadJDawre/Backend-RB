@@ -125,7 +125,8 @@ console.log(email,password);
 
     const option = {
         httpOnly:true,
-        secure:true
+        secure:true,
+        sameSite:"none"
     }
 
     return res.status(200).cookie("accessToken", AccessToken, option).cookie("refreshToken", RefreshToken, option).json({ message: "Login successful", status: 200, data: {user: loggedInUser, AccessToken, RefreshToken, role:role,status:200} });
