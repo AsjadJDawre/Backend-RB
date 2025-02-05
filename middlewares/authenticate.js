@@ -8,7 +8,7 @@ export const verifyJWT = asyncHandler(async (req, res, next) => {
 try {
     console.log("i am in verify jwt")
     const token = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "");
-    
+    console.log(token)
     if (!token) {
         console.log(401, "Unauthorized: No token provided");
         return res.status(401).json({ message: "Unauthorized: No token provided" });

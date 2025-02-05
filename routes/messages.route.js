@@ -19,7 +19,7 @@ router.get("/messages", async (req, res) => {
   
       const newMessage = new Message({ message, link });
       await newMessage.save();
-      res.status(201).json(newMessage);
+      res.status(200).json(newMessage);
     } catch (error) {
       res.status(500).json({ error: "Server Error" });
     }
@@ -28,7 +28,7 @@ router.get("/messages", async (req, res) => {
   router.delete("/messages/:id", async (req, res) => {
     try {
       await Message.findByIdAndDelete(req.params.id);
-      res.json({ success: true, message: "Message deleted successfully" });
+      res.status(200).json({ success: true, message: "Message deleted successfully" });
     } catch (error) {
       res.status(500).json({ error: "Error deleting message" });
     }
