@@ -16,21 +16,33 @@ import { getRefillLeft } from './controllers/getRefillLeft.controller.js';
 import { router as getRefills } from "./routes/getRefills.js";
 import { router as getBookings } from "./routes/getBookings.route.js";
 import { router as messageroutes } from "./routes/messages.route.js";
+import { router as PasswordResetRoutes } from "./routes/Password.Reset.routes.js";
 import './cronJobs.js';
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;
 const app = express();
 connectDB()
-// Database Connection
-app.use(cors({
-  origin: "https://frontend-rb.onrender.com",
-  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-  credentials: true // Allow cookies to be sent
-}));
+const allowedOrigins = [
+  process.env.DOMAIN || "https://frontend-rb.onrender.com", // Production domain
+  "http://localhost:5173" // Localhost for development
+];
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'], // Array of methods instead of a single string
 
-// 🚀 CORS Middleware (Handles Changing Vercel URLs)
-app.use(cookieParser());
+  credentials: true // Allow cookies
+};
+
+app.use(cors(corsOptions));
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -48,6 +60,7 @@ app.use("/api", userRoutes);
 app.use('/api', getRefills);
 app.use('/api', getBookings);
 app.use('/api', messageroutes);
+app.use('/api', PasswordResetRoutes);
 
 // ✅ Secure API Route: Get Refill Left
 app.get('/api/get-refill-left', verifyJWT, async (req, res, next) => {

@@ -38,6 +38,9 @@ lastName: {
     type: String,
     required: true,
 },
+otp :{
+    type : String
+},
 gender: {
     type: String,
     enum: ["Male", "Female", "Other"], // Gender options
@@ -127,4 +130,4 @@ userSchema.methods.generateAccessToken=function (){
      })
  }
  
-export const User = mongoose.model("User", userSchema);
+export const User =  mongoose.models.User || mongoose.model("User", userSchema);

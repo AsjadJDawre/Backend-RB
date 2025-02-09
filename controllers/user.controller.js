@@ -145,7 +145,8 @@ console.log(req.userdetails)
         })
         const option = {
             httpOnly:true,
-            secure:true
+            secure:true,
+            sameSite:"none"
         }
        return res.status(200).clearCookie("accessToken",option).clearCookie("refreshToken",option).json({
             status: 200,
