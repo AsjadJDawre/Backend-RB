@@ -25,7 +25,7 @@ const app = express();
 connectDB()
 const allowedOrigins = [
   "https://frontend-rb.onrender.com", // Production domain
-  // "http://localhost:5173" // Localhost for development
+  "http://localhost:5173" // Localhost for development
 ];
 const corsOptions = {
   origin: (origin, callback) => {
