@@ -124,10 +124,11 @@ console.log(email,password);
     console.log(role);
 
     const option = {
-        httpOnly:true,
-        secure:true,
-        sameSite:"Lax"
-    }
+        httpOnly: true,     // Prevents client-side JavaScript from accessing the cookie
+        secure: false,      // Set to false because localhost is not HTTPS
+        sameSite: "Lax",    // Allows sending cookies with same-site requests
+    };
+    
 
     return res.status(200).cookie("accessToken", AccessToken, option).cookie("refreshToken", RefreshToken, option).json({ message: "Login successful", status: 200, data: {user: loggedInUser, AccessToken, RefreshToken, role:role,status:200} });
 
@@ -144,10 +145,11 @@ console.log(req.userdetails)
             new : true
         })
         const option = {
-            httpOnly:true,
-            secure:true,
-            sameSite:"Lax"
-        }
+            httpOnly: true,     // Prevents client-side JavaScript from accessing the cookie
+            secure: false,      // Set to false because localhost is not HTTPS
+            sameSite: "Lax",    // Allows sending cookies with same-site requests
+        };
+        
        return res.status(200).clearCookie("accessToken",option).clearCookie("refreshToken",option).json({
             status: 200,
             message: "User logged out successfully"
