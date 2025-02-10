@@ -126,7 +126,7 @@ console.log(email,password);
     const option = {
         httpOnly: true,     // Prevents client-side JavaScript from accessing the cookie
         secure: false,      // Set to false because localhost is not HTTPS
-        sameSite: "Lax",    // Allows sending cookies with same-site requests
+        sameSite: "none",    // Allows sending cookies with same-site requests
     };
     
 
@@ -147,7 +147,7 @@ console.log(req.userdetails)
         const option = {
             httpOnly: true,     // Prevents client-side JavaScript from accessing the cookie
             secure: false,      // Set to false because localhost is not HTTPS
-            sameSite: "Lax",    // Allows sending cookies with same-site requests
+            sameSite: "none",    // Allows sending cookies with same-site requests
         };
         
        return res.status(200).clearCookie("accessToken",option).clearCookie("refreshToken",option).json({
