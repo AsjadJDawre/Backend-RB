@@ -126,7 +126,7 @@ console.log(email,password);
     const option = {
         httpOnly:true,
         secure:true,
-        sameSite:"None"
+        sameSite:"Lax"
     }
 
     return res.status(200).cookie("accessToken", AccessToken, option).cookie("refreshToken", RefreshToken, option).json({ message: "Login successful", status: 200, data: {user: loggedInUser, AccessToken, RefreshToken, role:role,status:200} });
@@ -146,7 +146,7 @@ console.log(req.userdetails)
         const option = {
             httpOnly:true,
             secure:true,
-            sameSite:"None"
+            sameSite:"Lax"
         }
        return res.status(200).clearCookie("accessToken",option).clearCookie("refreshToken",option).json({
             status: 200,
