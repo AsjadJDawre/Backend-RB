@@ -124,9 +124,9 @@ console.log(email,password);
     console.log(role);
 
     const option = {
-        httpOnly: true,     // Prevents client-side JavaScript from accessing the cookie
-        secure: false,      // Set to false because localhost is not HTTPS
-        sameSite: "none",    // Allows sending cookies with same-site requests
+        httpOnly: true,       // Prevents client-side JavaScript from accessing the cookie (XSS protection)
+        secure: true,         // Ensures cookies are sent over HTTPS only (set to true in production)
+        sameSite: "Strict",   // Ensures cookies are sent only to the same site (prevents CSRF attacks)
     };
     
 
@@ -145,10 +145,11 @@ console.log(req.userdetails)
             new : true
         })
         const option = {
-            httpOnly: true,     // Prevents client-side JavaScript from accessing the cookie
-            secure: false,      // Set to false because localhost is not HTTPS
-            sameSite: "none",    // Allows sending cookies with same-site requests
+            httpOnly: true,       // Prevents client-side JavaScript from accessing the cookie (XSS protection)
+            secure: true,         // Ensures cookies are sent over HTTPS only (set to true in production)
+            sameSite: "Strict",   // Ensures cookies are sent only to the same site (prevents CSRF attacks)
         };
+        
         
        return res.status(200).clearCookie("accessToken",option).clearCookie("refreshToken",option).json({
             status: 200,

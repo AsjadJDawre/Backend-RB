@@ -25,7 +25,7 @@ const app = express();
 connectDB()
 const allowedOrigins = [
   "https://frontend-rb.onrender.com", // Production domain
-  "http://localhost:5173" // Localhost for development
+  // "http://localhost:5173" // Localhost for development
 ];
 const corsOptions = {
   origin: (origin, callback) => {
@@ -39,6 +39,7 @@ const corsOptions = {
 
   credentials: true // Allow cookies
 };
+app.use(cookieParser());
 
 app.use(cors(corsOptions));
 
@@ -78,7 +79,7 @@ app.post('/api/verify-payment', async (req, res) => {
   console.log('Hit /api/verify-payment');
   try {
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
-    console.log(razorpay_order_id, razorpay_payment_id, razorpay_signature);
+    // console.log(razorpay_order_id, razorpay_payment_id, razorpay_signature);
 
     const generatedSignature = crypto
       .createHmac("sha256", process.env.RAZORPAY_SECRET)
