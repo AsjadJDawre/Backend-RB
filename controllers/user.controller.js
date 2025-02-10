@@ -126,7 +126,9 @@ console.log(email,password);
     const option = {
         httpOnly: true,       // Prevents client-side JavaScript from accessing the cookie (XSS protection)
         secure: true,         // Ensures cookies are sent over HTTPS only (set to true in production)
-        sameSite: "Strict",   // Ensures cookies are sent only to the same site (prevents CSRF attacks)
+        sameSite :"none",
+        path:'/'
+        // Ensures cookies are sent only to the same site (prevents CSRF attacks)
     };
     
 
@@ -147,7 +149,8 @@ console.log(req.userdetails)
         const option = {
             httpOnly: true,       // Prevents client-side JavaScript from accessing the cookie (XSS protection)
             secure: true,         // Ensures cookies are sent over HTTPS only (set to true in production)
-            sameSite: "Strict",   // Ensures cookies are sent only to the same site (prevents CSRF attacks)
+            sameSite :"none",
+            path: '/'
         };
         
         
