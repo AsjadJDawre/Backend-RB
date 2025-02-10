@@ -24,8 +24,8 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 connectDB()
 const allowedOrigins = [
-  process.env.DOMAIN || "https://frontend-rb.onrender.com", // Production domain
-  "http://localhost:5173" // Localhost for development
+  "https://frontend-rb.onrender.com", // Production domain
+  // "http://localhost:5173" // Localhost for development
 ];
 const corsOptions = {
   origin: (origin, callback) => {
